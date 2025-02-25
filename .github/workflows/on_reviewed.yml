@@ -1,0 +1,16 @@
+name: PR Reviewed
+
+on:
+  workflow_dispatch:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  make-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: touch ${{github.event.review.body}}
+      - run: git add ${{github.event.review.body}}
+      - run: git commit -m "Add ${{github.event.review.body}}"
+      - run: git push
