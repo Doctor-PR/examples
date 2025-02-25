@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: touch ${{github.event.review.body}}
+      - name: Make Changes
+        run: touch ${{github.event.review.body}}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
+        with:
+          base: ${{github.event.pull_request.base.ref}}
