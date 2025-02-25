@@ -11,6 +11,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: touch ${{github.event.review.body}}
-      - run: git add ${{github.event.review.body}}
-      - run: git commit -m "Add ${{github.event.review.body}}"
-      - run: git push
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
