@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AIDER_YES_ALWAYS: true
-      AIDER_GIT: false
+      AIDER_AUTO_COMMITS: false
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       AIDER_MESSAGE: ${{github.event.review.body}}
     steps:
