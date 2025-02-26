@@ -1,0 +1,18 @@
+name: PR Reviewed
+
+on:
+  workflow_dispatch:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  make-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Make Changes
+        run: touch ${{github.event.review.body}}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          base: ${{github.event.pull_request.head.ref}}
