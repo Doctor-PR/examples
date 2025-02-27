@@ -1,8 +1,8 @@
 name: Test
 
 on:
-  pull_request_review:
-    types: [submitted]
+  pull_request_review_comment:
+    types: [created]
 
 jobs:
   test:
@@ -11,8 +11,12 @@ jobs:
       - name: Echo inputs
         run: |
           echo "starting"
-          echo "github.event.review.body" ${{github.event.review.body}}
-          echo "github.event.pull_request.comments_url" ${{github.event.pull_request.comments_url}}
-          echo "github.event.pull_request.review_comment_url" ${{github.event.pull_request.review_comment_url}}
-          echo "github.event.pull_request.review_comments_url" ${{github.event.pull_request.review_comments_url}}
+          echo "github.event.comment.body" ${{github.event.comment.body}}
+          echo "github.event.comment.path" ${{github.event.comment.path}}
+          echo "github.event.comment.position" ${{github.event.comment.position}}
+          echo "github.event.comment.diff_hunk" ${{github.event.comment.diff_hunk}}
+          echo "github.event.comment.line" ${{github.event.comment.line}}
+          echo "github.event.comment.start_line" ${{github.event.comment.start_line}}
+          echo "github.event.comment.original_line" ${{github.event.comment.original_line}}
+          echo "github.event.comment.pull_request_review_id" ${{github.event.comment.pull_request_review_id}}
           echo "ending"
