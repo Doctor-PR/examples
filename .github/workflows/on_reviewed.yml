@@ -3,7 +3,7 @@ name: PR Reviewed
 on:
   workflow_dispatch:
   pull_request_review:
-    types: [submitted]
+    types: []
 
 jobs:
   make-changes:
@@ -13,6 +13,7 @@ jobs:
       AIDER_AUTO_COMMITS: false
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       AIDER_MESSAGE: ${{github.event.review.body}}
+      REVIEW_MESSAGE: ${{github.event.review}}
     steps:
       - uses: actions/checkout@v4
       - name: Go to examples/nextjs
