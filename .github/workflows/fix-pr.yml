@@ -57,9 +57,17 @@ jobs:
       - name: Extract Commit Message
         id: extract_commit
         run: |
-          # Simply get the last line and extract the commit message
-          LAST_LINE=$(tail -n 1 /tmp/aider/output.txt)
-          COMMIT_MESSAGE=$(echo "$LAST_LINE" | sed -E 's/Commit [a-f0-9]* (.*)/\1/' || echo "Fix from Aider")
+          # Search for the commit message pattern in the entire output file
+          COMMIT_LINE=$(grep -E "Commit [a-f0-9]+ " /tmp/aider/output.txt | tail -n 1)
+
+          if [ -n "$COMMIT_LINE" ]; then
+            # Extract the commit message from the line
+            COMMIT_MESSAGE=$(echo "$COMMIT_LINE" | sed -E 's/Commit [a-f0-9]+ (.*)/\1/')
+          else
+            # Fallback if no commit message is found
+            COMMIT_MESSAGE="Fix from Fix PR[bot]"
+          fi
+
           # Remove any quotes that might cause issues
           COMMIT_MESSAGE=$(echo "$COMMIT_MESSAGE" | tr -d '"')
           echo "commit_message=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
