@@ -1,3 +1,5 @@
+import sys
+
 def fibonacci_recursive(n):
     if n <= 0:
         return 0
@@ -8,7 +10,19 @@ def fibonacci_recursive(n):
 
 
 def main():
-    print(fibonacci_recursive(10))
+    if len(sys.argv) != 2:
+        print("Usage: python fibonacci.py <n>")
+        sys.exit(1)
+    
+    try:
+        n = int(sys.argv[1])
+        if n < 0:
+            print("Please provide a non-negative integer")
+            sys.exit(1)
+        print(f"Fibonacci({n}) = {fibonacci_recursive(n)}")
+    except ValueError:
+        print("Please provide a valid integer")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
