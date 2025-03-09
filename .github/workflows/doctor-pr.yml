@@ -19,10 +19,11 @@ on:
         type: string
 jobs:
   doctor-pr:
+    name: Doctor PR
     runs-on: ubuntu-latest
     steps:
       - name: Doctor PR
-        uses: Doctor-PR/dr-pr-action@v0.0.2
+        uses: Doctor-PR/dr-pr-action@v0.0.4
         with:
           base_branch_name: ${{inputs.base_branch_name}}
           base_pull_request_number: ${{inputs.base_pull_request_number}}
