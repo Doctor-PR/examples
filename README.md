@@ -1,5 +1,3 @@
-# pr-bot
+# Doctor PR Examples
 
-## Tests
-
-Last updated: February 25, 2025
+Doctor PR helps you address code reviews automatically with AI. This repository contains examples of how to use it.
