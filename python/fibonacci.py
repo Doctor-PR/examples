@@ -1,5 +1,6 @@
 import argparse
 
+
 def fibonacci_recursive(n):
     if n <= 0:
         return 0
@@ -10,10 +11,10 @@ def fibonacci_recursive(n):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Calculate the nth Fibonacci number.')
-    parser.add_argument('n', type=int, help='The position in the Fibonacci sequence')
+    parser = argparse.ArgumentParser(description="Calculate the nth Fibonacci number.")
+    parser.add_argument("n", type=int, help="The position in the Fibonacci sequence")
     args = parser.parse_args()
-    
+
     result = fibonacci_recursive(args.n)
     print(f"Fibonacci({args.n}) = {result}")
 
