@@ -17,19 +17,16 @@ on:
       aider_args:
         required: true
         type: string
-      aider_api_key:
-        required: true
-        type: string
 jobs:
   doctor-pr:
     runs-on: ubuntu-latest
     steps:
       - name: Doctor PR
-        uses: Doctor-PR/dr-pr-action@v0.0.9
+        uses: Doctor-PR/dr-pr-action@v0.0.10
         with:
           base_branch_name: ${{inputs.base_branch_name}}
           base_pull_request_number: ${{inputs.base_pull_request_number}}
           review_id: ${{inputs.review_id}}
           author_username: ${{inputs.author_username}}
           aider_args: ${{inputs.aider_args}}
-          aider_api_key: ${{inputs.aider_api_key}}
+          anthropic_api_key: ${{secrets.ANTHROPIC_API_KEY}}
